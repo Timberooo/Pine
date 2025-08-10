@@ -3,7 +3,7 @@
 
 namespace Pine
 {
-    enum class Color {
+    enum class Color4Bit {
         Black          = 30,
         Red            = 31,
         Green          = 32,
@@ -20,6 +20,21 @@ namespace Pine
         Bright_Magenta = 95,
         Bright_Cyan    = 96,
         Bright_White   = 97
+    };
+
+
+    typedef unsigned char Color8Bit;
+
+
+    struct Color24Bit;
+
+
+
+    struct Color24Bit
+    {
+        unsigned char red;
+        unsigned char green;
+        unsigned char blue;
     };
 }
 
