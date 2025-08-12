@@ -1,10 +1,13 @@
-#include <iostream>
+#include <string>
+
+#include "io/terminal.h"
 
 
 
 int main()
 {
-    std::cout << "Hello world!" << std::endl;
+    Pine::Terminal::setBufferSize(1024);
+    Pine::Terminal::writeLine("test");
 
     return 0;
 }
