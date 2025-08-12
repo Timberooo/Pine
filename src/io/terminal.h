@@ -49,7 +49,7 @@ namespace Pine::Terminal
 
     inline void writeLine(std::string_view str);
 
-    void writeLine(char character);
+    inline void writeLine(char character);
 
 
     void flush();
