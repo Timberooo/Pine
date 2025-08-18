@@ -172,6 +172,54 @@ namespace Pine::Terminal
 
 
 
+    std::string readLine()
+    {
+        // TODO: Filter out escape sequences and other undesireable inputs.
+        flush();
+
+        constexpr std::size_t inputBufferSize = 32;
+        char*                 inputBuffer     = new char[inputBufferSize];
+        bool                  finishedReading = false;
+
+        std::string input;
+
+        do
+        {
+            ssize_t bytesRead = read(STDIN_FILENO, inputBuffer, inputBufferSize);
+            
+            // TODO: Error handling.
+            if (bytesRead < 1)
+                finishedReading = true;
+            else
+            {
+                // If no more input to capture
+                if (bytesRead < inputBufferSize || inputBuffer[inputBufferSize - 1] == '\n')
+                {
+                    inputBuffer[bytesRead - 1] = '\0';
+                    finishedReading = true;
+                }
+
+                input += inputBuffer;
+            }
+        } while (!finishedReading);
+
+        return input;
+    }
+
+
+
+    char readChar()
+    {
+        flush();
+
+        char c = '\0';
+        (void)read(STDIN_FILENO, &c, 1);
+
+        return c;
+    }
+
+
+
     void flush()
     {
         if (g_terminalData.outputBufferStr.size() > 0)

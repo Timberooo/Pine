@@ -52,6 +52,11 @@ namespace Pine::Terminal
     inline void writeLine(char character);
 
 
+    std::string readLine();
+
+    char readChar();
+
+
     void flush();
 
     void setBufferSize(std::size_t bufferSize);
