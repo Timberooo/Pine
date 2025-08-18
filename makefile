@@ -1,10 +1,10 @@
 CC     = g++
 TARGET = pine
-FILES  = src/main.cpp
+FILES  = src/main.cpp src/io/terminal_linux.cpp
 
 STD_VERSION = -std=c++17
 WARNINGS    = -Wall
-DEBUG_MACRO = -D CEDAR_DEBUG
+DEBUG_MACRO = -D PINE_DEBUG
 
 FLAGS       = $(WARNINGS) $(STD_VERSION)
 DEBUG_FLAGS = $(WARNINGS) $(STD_VERSION) $(DEBUG_MACRO)
