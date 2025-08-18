@@ -14,6 +14,11 @@ namespace Pine
     inline Vector2D normalize(Vector2D vector);
     inline Vector3D normalize(Vector3D vector);
 
+    inline float dot(Vector2D vec1, Vector2D vec2);
+    inline float dot(Vector3D vec1, Vector3D vec2);
+
+    inline Vector3D cross(Vector3D vec1, Vector3D vec2);
+
 
 
     // vvv Vector2D vvv
@@ -274,6 +279,29 @@ namespace Pine
         vector.z /= length;
 
         return vector;
+    }
+
+
+
+    inline float dot(Vector2D vec1, Vector2D vec2) {
+        return (vec1.x * vec2.x) + (vec1.y * vec2.y);
+    }
+    
+    inline float dot(Vector3D vec1, Vector3D vec2) {
+        return (vec1.x * vec2.x) + (vec1.y * vec2.y) + (vec1.z + vec2.z);
+    }
+    
+    
+
+    inline Vector3D cross(Vector3D vec1, Vector3D vec2)
+    {
+        Vector3D result;
+
+        result.x = (vec1.y * vec2.z) - (vec1.z * vec2.y);
+        result.y = (vec1.z * vec2.x) - (vec1.x * vec2.z);
+        result.z = (vec1.x * vec2.y) - (vec1.y * vec2.x);
+        
+        return result;
     }
 
 
