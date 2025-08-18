@@ -18,7 +18,7 @@ namespace Pine
 
     // vvv Vector2D vvv
 
-    
+
 
     struct Vector2D
     {
@@ -185,7 +185,7 @@ namespace Pine
     {
         x -= rhs.x;
         y -= rhs.y;
-        z += rhs.z;
+        z -= rhs.z;
         return *this;
     }
 
@@ -271,6 +271,7 @@ namespace Pine
 
         vector.x /= length;
         vector.y /= length;
+        vector.z /= length;
 
         return vector;
     }
