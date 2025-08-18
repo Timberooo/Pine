@@ -46,7 +46,6 @@ namespace Pine
         friend inline Vector2D operator/(const Vector2D& vector, float scalar);
         friend inline Vector2D operator/(float scalar, const Vector2D& vector);
 
-
         inline float length() const;
     };
 
@@ -161,7 +160,6 @@ namespace Pine
         friend inline Vector3D operator*(float scalar, const Vector3D& vector);
         friend inline Vector3D operator/(const Vector3D& vector, float scalar);
         friend inline Vector3D operator/(float scalar, const Vector3D& vector);
-
 
         inline float length() const;
     };
@@ -291,7 +289,7 @@ namespace Pine
         return (vec1.x * vec2.x) + (vec1.y * vec2.y) + (vec1.z + vec2.z);
     }
     
-    
+
 
     inline Vector3D cross(Vector3D vec1, Vector3D vec2)
     {
