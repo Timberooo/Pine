@@ -3,46 +3,53 @@
 
 namespace Pine
 {
-    template <typename T>
     struct Vector2D;
-
-    template <typename T>
     struct Vector3D;
 
 
 
-    template <typename T>
     struct Vector2D
     {
-        T x;
-        T y;
+        float x;
+        float y;
 
-        inline bool operator==(const Vector2D<T>& other) const {
-            return x == other.x && y == other.y;
-        }
 
-        inline bool operator!=(const Vector2D<T>& other) const {
-            return !operator==(other);
-        }
+        inline bool operator==(const Vector2D& other) const;
+        inline bool operator!=(const Vector2D& other) const;
     };
 
 
 
-    template <typename T>
+    inline bool Vector2D::operator==(const Vector2D& other) const {
+        return x == other.x && y == other.y;
+    }
+
+    inline bool Vector2D::operator!=(const Vector2D& other) const {
+        return !operator==(other);
+    }
+
+
+
     struct Vector3D
     {
-        T x;
-        T y;
-        T z;
+        float x;
+        float y;
+        float z;
 
-        inline bool operator==(const Vector3D<T>& other) const {
-            return x == other.x && y == other.y && z == other.z;
-        }
 
-        inline bool operator!=(const Vector3D<T>& other) const {
-            return !operator==(other);
-        }
+        inline bool operator==(const Vector3D& other) const;
+        inline bool operator!=(const Vector3D& other) const;
     };
+
+
+
+    inline bool Vector3D::operator==(const Vector3D& other) const {
+        return x == other.x && y == other.y && z == other.z;
+    }
+
+    inline bool Vector3D::operator!=(const Vector3D& other) const {
+        return !operator==(other);
+    }
 }
 
 #endif // PINE_MATH_VECTOR_H

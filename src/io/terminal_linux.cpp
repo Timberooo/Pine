@@ -365,29 +365,29 @@ namespace Pine::Terminal
 
 
 
-    void moveCursor(Vector2D<int> amount)
+    void moveCursor(int xAmount, int yAmount)
     {
         MoveCursorDirection directon;
 
-        if (amount.x > 0)
+        if (xAmount > 0)
             directon = MoveCursorDirection::Right;
         else
         {
             directon = MoveCursorDirection::Left;
-            amount.x *= -1;
+            xAmount *= -1;
         }
 
-        moveCursor(directon, amount.x);
+        moveCursor(directon, xAmount);
 
-        if (amount.y > 0)
+        if (yAmount > 0)
             directon = MoveCursorDirection::Up;
         else
         {
             directon = MoveCursorDirection::Down;
-            amount.y *= -1;
+            yAmount *= -1;
         }
 
-        moveCursor(directon, amount.y);
+        moveCursor(directon, yAmount);
     }
 
 
