@@ -11,8 +11,14 @@ namespace Pine
     struct Vector3D;
 
 
+    inline Vector2D normalize(Vector2D vector);
+    inline Vector3D normalize(Vector3D vector);
+
+
 
     // vvv Vector2D vvv
+
+    
 
     struct Vector2D
     {
@@ -123,7 +129,11 @@ namespace Pine
         return std::sqrt((x * x) + (y * y));
     }
 
+
+
     // vvv Vector3D vvv // ^^^ Vector2D ^^^
+
+
 
     struct Vector3D
     {
@@ -239,7 +249,35 @@ namespace Pine
         return std::sqrt((x * x) + (y * y) + (z * z));
     }
 
-    // ^^^ Vector3D ^^^
+
+
+    // vvv Free Functions vvv // ^^^ Vector3D ^^^
+
+
+
+    inline Vector2D normalize(Vector2D vector)
+    {
+        float length = vector.length();
+
+        vector.x /= length;
+        vector.y /= length;
+
+        return vector;
+    }
+
+    inline Vector3D normalize(Vector3D vector)
+    {
+        float length = vector.length();
+
+        vector.x /= length;
+        vector.y /= length;
+
+        return vector;
+    }
+
+
+
+    // ^^^ Free Functions ^^^
 }
 
 #endif // PINE_MATH_VECTOR_H

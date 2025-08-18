@@ -13,24 +13,23 @@ int main()
     Pine::Terminal::setBufferSize(1024);
 
     Pine::Vector2D v;
-    v.x = 0;
+    v.x = 1;
     v.y = 1;
-
     printVectorData("v", v);
 
     Pine::Vector2D u;
     u.x = 0;
     u.y = -2;
-
     printVectorData("u", u);
 
     Pine::Vector2D w = v + u;
-    
-    printVectorData("v + u", w);
+    printVectorData("w = v + u", w);
 
     w *= -5;
+    printVectorData("w * -5", w);
 
-    printVectorData("(v + u) * -5", w);
+    w = Pine::normalize(w);
+    printVectorData("w norm", w);
 
     Pine::Terminal::flush();
 
