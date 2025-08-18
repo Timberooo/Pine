@@ -1,6 +1,10 @@
 #ifndef PINE_MATH_VECTOR_H
 #define PINE_MATH_VECTOR_H
 
+#include <cmath>
+
+
+
 namespace Pine
 {
     struct Vector2D;
@@ -30,6 +34,9 @@ namespace Pine
         friend inline Vector2D operator*(float scalar, const Vector2D& vector);
         friend inline Vector2D operator/(const Vector2D& vector, float scalar);
         friend inline Vector2D operator/(float scalar, const Vector2D& vector);
+
+
+        inline float length() const;
     };
 
 
@@ -110,6 +117,12 @@ namespace Pine
         return operator/(vector, scalar);
     }
 
+
+
+    inline float Vector2D::length() const {
+        return std::sqrt((x * x) + (y * y));
+    }
+
     // vvv Vector3D vvv // ^^^ Vector2D ^^^
 
     struct Vector3D
@@ -133,6 +146,9 @@ namespace Pine
         friend inline Vector3D operator*(float scalar, const Vector3D& vector);
         friend inline Vector3D operator/(const Vector3D& vector, float scalar);
         friend inline Vector3D operator/(float scalar, const Vector3D& vector);
+
+
+        inline float length() const;
     };
 
 
@@ -215,6 +231,12 @@ namespace Pine
 
     inline Vector3D operator/(float scalar, const Vector3D& vector) {
         return operator/(vector, scalar);
+    }
+
+
+
+    inline float Vector3D::length() const {
+        return std::sqrt((x * x) + (y * y) + (z * z));
     }
 
     // ^^^ Vector3D ^^^

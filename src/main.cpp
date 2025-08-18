@@ -13,24 +13,24 @@ int main()
     Pine::Terminal::setBufferSize(1024);
 
     Pine::Vector2D v;
-    v.x = 1;
+    v.x = 0;
     v.y = 1;
 
     printVectorData("v", v);
 
     Pine::Vector2D u;
-    u.x = 1;
-    u.y = 1;
+    u.x = 0;
+    u.y = -2;
 
     printVectorData("u", u);
 
     Pine::Vector2D w = v + u;
     
-    printVectorData("w", w);
+    printVectorData("v + u", w);
 
     w *= -5;
 
-    printVectorData("w", w);
+    printVectorData("(v + u) * -5", w);
 
     Pine::Terminal::flush();
 
@@ -41,5 +41,5 @@ int main()
 
 void printVectorData(std::string name, Pine::Vector2D v)
 {
-    Pine::Terminal::writeLine(name + " values: (" + std::to_string(v.x) + ", " + std::to_string(v.y) + ')');
+    Pine::Terminal::writeLine(name + " values: (" + std::to_string(v.x) + ", " + std::to_string(v.y) + ") length: " + std::to_string(v.length()));
 }
