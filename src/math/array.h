@@ -45,6 +45,19 @@ namespace Pine
         inline void resize(std::size_t width, std::size_t height, const T& value);
         inline void clear();
 
+        template <typename F>
+        void foreach(F func);
+        template <typename F>
+        void foreach(F func) const;
+        template <typename F>
+        void foreach(Point2D<std::size_t> start, Size2D<std::size_t> size, F func);
+        template <typename F>
+        void foreach(Point2D<std::size_t> start, Size2D<std::size_t> size, F func) const;
+        template <typename F>
+        inline void foreach(std::size_t x, std::size_t y, std::size_t width, std::size_t height, F func);
+        template <typename F>
+        inline void foreach(std::size_t x, std::size_t y, std::size_t width, std::size_t height, F func) const;
+
     private:
 
         std::vector<T>      m_data;
@@ -167,6 +180,54 @@ namespace Pine
     {
         m_size = { 0, 0 };
         m_data.clear();
+    }
+
+
+
+    template <typename T>
+    template <typename F>
+    void Array2D<T>::foreach(F func)
+    {
+        for (std::size_t i = 0; i < m_data.size(); i++)
+            func(m_data.at(i));
+    }
+
+    template <typename T>
+    template <typename F>
+    void Array2D<T>::foreach(F func) const
+    {
+        for (std::size_t i = 0; i < m_data.size(); i++)
+            func(m_data.at(i));
+    }
+
+    template <typename T>
+    template <typename F>
+    void Array2D<T>::foreach(Point2D<std::size_t> start, Size2D<std::size_t> size, F func)
+    {
+        for (std::size_t y = start.y; y < size.height; y++)
+            for (std::size_t x = start.x; x < size.width; x++)
+                func(m_data.at(index(x, y, this->size())));
+    }
+
+    template <typename T>
+    template <typename F>
+    void Array2D<T>::foreach(Point2D<std::size_t> start, Size2D<std::size_t> size, F func) const
+    {
+        for (std::size_t y = start.y; y < size.height; y++)
+            for (std::size_t x = start.x; x < size.width; x++)
+                func(m_data.at(index(x, y, this->size())));
+    }
+
+    template <typename T>
+    template <typename F>
+    inline void Array2D<T>::foreach(std::size_t x, std::size_t y, std::size_t width, std::size_t height, F func) {
+        foreach({ x, y }, { width, height }, func);
+    }
+
+    template <typename T>
+    template <typename F>
+    inline void Array2D<T>::foreach(std::size_t x, std::size_t y, std::size_t width, std::size_t height, F func) const {
+        foreach({ x, y }, { width, height }, func);
     }
 
 

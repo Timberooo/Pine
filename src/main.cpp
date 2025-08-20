@@ -15,15 +15,21 @@ int main()
 
     Pine::Size2D<int> terminalSize = Pine::Terminal::size();
     const Pine::Array2D<Pine::Color8Bit> outputBuffer(terminalSize.width, terminalSize.height, 35);
-    
-    for (std::size_t y = 0; y < outputBuffer.size().height; y++)
+
+    outputBuffer.foreach([&](Pine::Color8Bit color)
     {
-        for (std::size_t x = 0; x < outputBuffer.size().width; x++)
-        {
-            Pine::Terminal::setBackgroundColor(outputBuffer.at(x, y));
-            Pine::Terminal::write(' ');
-        }
-    }
+        Pine::Terminal::setBackgroundColor(color);
+        Pine::Terminal::write(' ');
+    });
+    
+    // for (std::size_t y = 0; y < outputBuffer.size().height; y++)
+    // {
+    //     for (std::size_t x = 0; x < outputBuffer.size().width; x++)
+    //     {
+    //         Pine::Terminal::setBackgroundColor(outputBuffer.at(x, y));
+    //         Pine::Terminal::write(' ');
+    //     }
+    // }
 
     Pine::Terminal::flush();
 
