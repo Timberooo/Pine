@@ -13,40 +13,17 @@ int main()
 {
     Pine::Terminal::setBufferSize(1024);
 
-    Pine::Vector3D a;
-    a.x = 1;
-    a.y = 2;
-    a.z = 3;
-    printVectorData("a", a);
+    Pine::Size2D<int> terminalSize = Pine::Terminal::size();
+    const Pine::Array2D<Pine::Color8Bit> outputBuffer(terminalSize.width, terminalSize.height, 35);
     
-    Pine::Vector3D b;
-    b.x = 4;
-    b.y = 5;
-    b.z = 6;
-    printVectorData("b", b);
-
-    Pine::Vector3D abCross = Pine::cross(a, b);
-    printVectorData("a x b", abCross);
-    printVectorData("norm(a x b)", Pine::normalize(abCross));
-
-    // Pine::Vector2D v;
-    // v.x = 1;
-    // v.y = 1;
-    // printVectorData("v", v);
-
-    // Pine::Vector2D u;
-    // u.x = 0;
-    // u.y = -2;
-    // printVectorData("u", u);
-
-    // Pine::Vector2D w = v + u;
-    // printVectorData("w = v + u", w);
-
-    // w *= -5;
-    // printVectorData("w * -5", w);
-
-    // w = Pine::normalize(w);
-    // printVectorData("w norm", w);
+    for (std::size_t y = 0; y < outputBuffer.size().height; y++)
+    {
+        for (std::size_t x = 0; x < outputBuffer.size().width; x++)
+        {
+            Pine::Terminal::setBackgroundColor(outputBuffer.at(x, y));
+            Pine::Terminal::write(' ');
+        }
+    }
 
     Pine::Terminal::flush();
 
