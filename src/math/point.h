@@ -17,6 +17,10 @@ namespace Pine
         T x;
         T y;
 
+
+        inline Point2D() {}
+        inline Point2D(T x, T y) : x(x), y(y) {}
+
         inline bool operator==(const Point2D<T>& other) const {
             return x == other.x && y == other.y;
         }
@@ -34,6 +38,10 @@ namespace Pine
         T x;
         T y;
         T z;
+
+
+        inline Point3D() {}
+        inline Point3D(T x, T y, T z) : x(x), y(y), z(z) {}
 
         inline bool operator==(const Point3D<T>& other) const {
             return x == other.x && y == other.y && z == other.z;
