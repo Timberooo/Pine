@@ -5,7 +5,6 @@ namespace Pine
 {
     template <typename T>
     struct Point2D;
-
     template <typename T>
     struct Point3D;
 
