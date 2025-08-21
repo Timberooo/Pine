@@ -31,6 +31,9 @@ namespace Pine
         float y;
 
 
+        inline Vector2D() {}
+        inline Vector2D(float x, float y) : x(x), y(y) {}
+
         inline bool operator==(const Vector2D& other) const;
         inline bool operator!=(const Vector2D& other) const;
 
@@ -145,6 +148,9 @@ namespace Pine
         float y;
         float z;
 
+
+        inline Vector3D() {}
+        inline Vector3D(float x, float y, float z) : x(x), y(y), z(z) {}
 
         inline bool operator==(const Vector3D& other) const;
         inline bool operator!=(const Vector3D& other) const;
