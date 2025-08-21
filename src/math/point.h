@@ -21,14 +21,21 @@ namespace Pine
         inline Point2D() {}
         inline Point2D(T x, T y) : x(x), y(y) {}
 
-        inline bool operator==(const Point2D<T>& other) const {
-            return x == other.x && y == other.y;
-        }
-
-        inline bool operator!=(const Point2D<T>& other) const {
-            return !operator==(other);
-        }
+        inline bool operator==(const Point2D<T>& other) const;
+        inline bool operator!=(const Point2D<T>& other) const;
     };
+
+
+
+    template <typename T>
+    inline bool Point2D<T>::operator==(const Point2D<T>& other) const {
+        return x == other.x && y == other.y;
+    }
+
+    template <typename T>
+    inline bool Point2D<T>::operator!=(const Point2D<T>& other) const {
+        return !operator==(other);
+    }
 
 
 
@@ -43,14 +50,21 @@ namespace Pine
         inline Point3D() {}
         inline Point3D(T x, T y, T z) : x(x), y(y), z(z) {}
 
-        inline bool operator==(const Point3D<T>& other) const {
-            return x == other.x && y == other.y && z == other.z;
-        }
-
-        inline bool operator!=(const Point3D<T>& other) const {
-            return !operator==(other);
-        }
+        inline bool operator==(const Point3D<T>& other) const;
+        inline bool operator!=(const Point3D<T>& other) const;
     };
+
+
+
+    template <typename T>
+    inline bool Point3D<T>::operator==(const Point3D<T>& other) const {
+        return x == other.x && y == other.y && z == other.z;
+    }
+
+    template <typename T>
+    inline bool Point3D<T>::operator!=(const Point3D<T>& other) const {
+        return !operator==(other);
+    }
 }
 
 #endif // PINE_MATH_POINT_H
