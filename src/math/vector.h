@@ -47,7 +47,6 @@ namespace Pine
         friend inline Vector2D operator*(const Vector2D& vector, float scalar);
         friend inline Vector2D operator*(float scalar, const Vector2D& vector);
         friend inline Vector2D operator/(const Vector2D& vector, float scalar);
-        friend inline Vector2D operator/(float scalar, const Vector2D& vector);
 
         inline float length() const;
     };
@@ -126,10 +125,6 @@ namespace Pine
         return result;
     }
 
-    inline Vector2D operator/(float scalar, const Vector2D& vector) {
-        return operator/(vector, scalar);
-    }
-
 
 
     inline float Vector2D::length() const {
@@ -165,7 +160,6 @@ namespace Pine
         friend inline Vector3D operator*(const Vector3D& vector, float scalar);
         friend inline Vector3D operator*(float scalar, const Vector3D& vector);
         friend inline Vector3D operator/(const Vector3D& vector, float scalar);
-        friend inline Vector3D operator/(float scalar, const Vector3D& vector);
 
         inline float length() const;
     };
@@ -246,10 +240,6 @@ namespace Pine
         Vector3D result = vector;
         result /= scalar;
         return result;
-    }
-
-    inline Vector3D operator/(float scalar, const Vector3D& vector) {
-        return operator/(vector, scalar);
     }
 
 
