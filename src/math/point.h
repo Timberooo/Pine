@@ -12,6 +12,9 @@ namespace Pine
     template <typename T>
     struct Point3D;
 
+    // These are functionally equivalent to getting the length of the vector
+    // from p1 to p2, but these functions defer the float conversion to the end
+    // of the calculation and are more obvious/intuitive
     template <typename T>
     float distance(const Point2D<T>& p1, const Point2D<T>& p2);
     template <typename T>
