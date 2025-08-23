@@ -4,7 +4,7 @@
 namespace Pine
 {
     // Clearer intent that using std::pow() or std::exp() and avoids the
-    // headahces of the float requirements of those functions
+    // headaches of the float requirements of those functions
     template <typename T>
     inline T square(const T& val);
 
