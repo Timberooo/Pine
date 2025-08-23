@@ -1,55 +1,23 @@
 #include "io/terminal.h"
+#include "math.h"
 
 #include <string>
-
-
-
-void printVectorData(std::string name, Pine::Vector2D v);
-void printVectorData(std::string name, Pine::Vector3D v);
 
 
 
 int main()
 {
     Pine::Terminal::setBufferSize(1024);
-
-    Pine::Vector2D v(1, 1);
-    Pine::Terminal::writeLine('(' + std::to_string(v.x) + ", " + std::to_string(v.y) + ") " + std::to_string(v.length()));
-
-    v = Pine::normalize(v);
-    Pine::Terminal::writeLine('(' + std::to_string(v.x) + ", " + std::to_string(v.y) + ") " + std::to_string(v.length()));
-
-    // Pine::Size2D<int> terminalSize = Pine::Terminal::size();
-    // const Pine::Array2D<Pine::Color8Bit> outputBuffer(terminalSize.width, terminalSize.height, 35);
-
-    // outputBuffer.foreach([&](Pine::Color8Bit color)
-    // {
-    //     Pine::Terminal::setBackgroundColor(color);
-    //     Pine::Terminal::write(' ');
-    // });
     
-    // for (std::size_t y = 0; y < outputBuffer.size().height; y++)
-    // {
-    //     for (std::size_t x = 0; x < outputBuffer.size().width; x++)
-    //     {
-    //         Pine::Terminal::setBackgroundColor(outputBuffer.at(x, y));
-    //         Pine::Terminal::write(' ');
-    //     }
-    // }
+    Pine::Point2D<int> p1(3, 2);
+    Pine::Point2D<int> p2(1, 5);
+
+    Pine::Vector2D v = p2 - p1;
+
+    Pine::Terminal::writeLine("distance: " + std::to_string(Pine::distance(p1, p2)));
+    Pine::Terminal::writeLine("v length: " + std::to_string(v.length()));
 
     Pine::Terminal::flush();
 
     return 0;
-}
-
-
-
-void printVectorData(std::string name, Pine::Vector2D v)
-{
-    Pine::Terminal::writeLine(name + " values: (" + std::to_string(v.x) + ", " + std::to_string(v.y) + ") length: " + std::to_string(v.length()));
-}
-
-void printVectorData(std::string name, Pine::Vector3D v)
-{
-    Pine::Terminal::writeLine(name + " values: (" + std::to_string(v.x) + ", " + std::to_string(v.y) + ", " + std::to_string(v.z) + ") length: " + std::to_string(v.length()));
 }

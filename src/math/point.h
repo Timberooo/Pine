@@ -1,6 +1,10 @@
 #ifndef PINE_MATH_POINT_H
 #define PINE_MATH_POINT_H
 
+#include "math_common.h"
+
+#include <cmath>
+
 namespace Pine
 {
     template <typename T>
@@ -8,7 +12,12 @@ namespace Pine
     template <typename T>
     struct Point3D;
 
+    template <typename T>
+    float distance(const Point2D<T>& p1, const Point2D<T>& p2);
+    template <typename T>
+    float distance(const Point3D<T>& p1, const Point3D<T>& p2);
 
+    // vvv Point2D vvv
 
     template <typename T>
     struct Point2D
@@ -23,6 +32,8 @@ namespace Pine
         inline bool operator==(const Point2D<T>& other) const;
         inline bool operator!=(const Point2D<T>& other) const;
 
+        // Using template types so all supported conversions from T to TReturn
+        // can be used instead of only explicity supported conversions
         template <typename TReturn>
         explicit inline operator Point2D<TReturn>() const { return Point2D<TReturn>(static_cast<TReturn>(x), static_cast<TReturn>(y)); }
     };
@@ -39,7 +50,7 @@ namespace Pine
         return !operator==(other);
     }
 
-
+    // vvv Point3D vvv // ^^^ Point2D ^^^
 
     template <typename T>
     struct Point3D
@@ -55,6 +66,8 @@ namespace Pine
         inline bool operator==(const Point3D<T>& other) const;
         inline bool operator!=(const Point3D<T>& other) const;
 
+        // Using template types so all supported conversions from T to TReturn
+        // can be used instead of only explicity supported conversions
         template <typename TReturn>
         explicit inline operator Point3D<TReturn>() const { return Point3D<TReturn>(static_cast<TReturn>(x), static_cast<TReturn>(y), static_cast<TReturn>(z)); }
     };
@@ -69,6 +82,18 @@ namespace Pine
     template <typename T>
     inline bool Point3D<T>::operator!=(const Point3D<T>& other) const {
         return !operator==(other);
+    }
+
+    // vvv Free Functions vvv // ^^^ Point3D ^^^
+
+    template <typename T>
+    float distance(const Point2D<T>& p1, const Point2D<T>& p2) {
+        return std::sqrt(square(p2.x - p1.x) + square(p2.y - p1.y));
+    }
+
+    template <typename T>
+    float distance(const Point3D<T>& p1, const Point3D<T>& p2) {
+        return std::sqrt(square(p2.x - p1.x) + square(p2.y - p1.y) + square(p2.z - p1.z));
     }
 }
 
