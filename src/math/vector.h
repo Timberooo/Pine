@@ -1,6 +1,8 @@
 #ifndef PINE_MATH_VECTOR_H
 #define PINE_MATH_VECTOR_H
 
+#include "point.h"
+
 #include <cmath>
 
 
@@ -18,6 +20,19 @@ namespace Pine
     inline float dot(Vector3D vec1, Vector3D vec2);
 
     inline Vector3D cross(Vector3D vec1, Vector3D vec2);
+
+    template <typename T1, typename T2>
+    inline Vector2D operator-(const Point2D<T1>& lhs, const Point2D<T2>& rhs);
+    template <typename T1, typename T2>
+    inline Vector3D operator-(const Point3D<T1>& lhs, const Point3D<T2>& rhs);
+    template <typename T>
+    inline Point2D<float> operator+(const Point2D<T>& lhs, const Vector2D& rhs);
+    template <typename T>
+    inline Point2D<float> operator+(const Vector2D& lhs, const Point2D<T>& rhs);
+    template <typename T>
+    inline Point3D<float> operator+(const Point3D<T>& lhs, const Vector3D& rhs);
+    template <typename T>
+    inline Point3D<float> operator+(const Vector3D& lhs, const Point3D<T>& rhs);
 
 
 
@@ -296,6 +311,64 @@ namespace Pine
         result.z = (vec1.x * vec2.y) - (vec1.y * vec2.x);
         
         return result;
+    }
+
+
+
+    template <typename T1, typename T2>
+    inline Vector2D operator-(const Point2D<T1>& lhs, const Point2D<T2>& rhs)
+    {
+        Vector2D result;
+
+        result.x = lhs.x - rhs.x;
+        result.y = lhs.y - rhs.y;
+
+        return result;
+    }
+
+    template <typename T1, typename T2>
+    inline Vector3D operator-(const Point3D<T1>& lhs, const Point3D<T2>& rhs)
+    {
+        Vector3D result;
+
+        result.x = lhs.x - rhs.x;
+        result.y = lhs.y - rhs.y;
+        result.z = lhs.z - rhs.z;
+
+        return result;
+    }
+    
+    template <typename T>
+    inline Point2D<float> operator+(const Point2D<T>& lhs, const Vector2D& rhs)
+    {
+        Point2D<float> result;
+
+        result.x = lhs.x + rhs.x;
+        result.y = lhs.y + rhs.y;
+
+        return result;
+    }
+    
+    template <typename T>
+    inline Point2D<float> operator+(const Vector2D& lhs, const Point2D<T>& rhs) {
+        return rhs + lhs;
+    }
+    
+    template <typename T>
+    inline Point3D<float> operator+(const Point3D<T>& lhs, const Vector3D& rhs)
+    {
+        Point3D<float> result;
+
+        result.x = lhs.x + rhs.x;
+        result.y = lhs.y + rhs.y;
+        result.z = lhs.z + rhs.z;
+
+        return result;
+    }
+
+    template <typename T>
+    inline Point3D<float> operator+(const Vector3D& lhs, const Point3D<T>& rhs) {
+        return rhs + lhs;
     }
 
 
