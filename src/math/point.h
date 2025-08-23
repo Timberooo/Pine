@@ -16,9 +16,9 @@ namespace Pine
     // from p1 to p2, but these functions defer the float conversion to the end
     // of the calculation and are more obvious/intuitive
     template <typename T>
-    float distance(const Point2D<T>& p1, const Point2D<T>& p2);
+    inline float distance(const Point2D<T>& p1, const Point2D<T>& p2);
     template <typename T>
-    float distance(const Point3D<T>& p1, const Point3D<T>& p2);
+    inline float distance(const Point3D<T>& p1, const Point3D<T>& p2);
 
     // vvv Point2D vvv
 
@@ -90,12 +90,12 @@ namespace Pine
     // vvv Free Functions vvv // ^^^ Point3D ^^^
 
     template <typename T>
-    float distance(const Point2D<T>& p1, const Point2D<T>& p2) {
+    inline float distance(const Point2D<T>& p1, const Point2D<T>& p2) {
         return std::sqrt(static_cast<float>(square(p2.x - p1.x) + square(p2.y - p1.y)));
     }
 
     template <typename T>
-    float distance(const Point3D<T>& p1, const Point3D<T>& p2) {
+    inline float distance(const Point3D<T>& p1, const Point3D<T>& p2) {
         return std::sqrt(static_cast<float>(square(p2.x - p1.x) + square(p2.y - p1.y) + square(p2.z - p1.z)));
     }
 }
