@@ -269,25 +269,12 @@ namespace Pine
 
 
 
-    inline Vector2D normalize(Vector2D vector)
-    {
-        float length = vector.length();
-
-        vector.x /= length;
-        vector.y /= length;
-
-        return vector;
+    inline Vector2D normalize(Vector2D vector) {
+        return vector / vector.length();
     }
 
-    inline Vector3D normalize(Vector3D vector)
-    {
-        float length = vector.length();
-
-        vector.x /= length;
-        vector.y /= length;
-        vector.z /= length;
-
-        return vector;
+    inline Vector3D normalize(Vector3D vector) {
+        return vector / vector.length();
     }
 
 

@@ -13,14 +13,20 @@ int main()
 {
     Pine::Terminal::setBufferSize(1024);
 
-    Pine::Size2D<int> terminalSize = Pine::Terminal::size();
-    const Pine::Array2D<Pine::Color8Bit> outputBuffer(terminalSize.width, terminalSize.height, 35);
+    Pine::Vector2D v(1, 1);
+    Pine::Terminal::writeLine('(' + std::to_string(v.x) + ", " + std::to_string(v.y) + ") " + std::to_string(v.length()));
 
-    outputBuffer.foreach([&](Pine::Color8Bit color)
-    {
-        Pine::Terminal::setBackgroundColor(color);
-        Pine::Terminal::write(' ');
-    });
+    v = Pine::normalize(v);
+    Pine::Terminal::writeLine('(' + std::to_string(v.x) + ", " + std::to_string(v.y) + ") " + std::to_string(v.length()));
+
+    // Pine::Size2D<int> terminalSize = Pine::Terminal::size();
+    // const Pine::Array2D<Pine::Color8Bit> outputBuffer(terminalSize.width, terminalSize.height, 35);
+
+    // outputBuffer.foreach([&](Pine::Color8Bit color)
+    // {
+    //     Pine::Terminal::setBackgroundColor(color);
+    //     Pine::Terminal::write(' ');
+    // });
     
     // for (std::size_t y = 0; y < outputBuffer.size().height; y++)
     // {
