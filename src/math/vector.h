@@ -5,26 +5,27 @@
 
 #include <cmath>
 
-
-
 namespace Pine
 {
     struct Vector2D;
     struct Vector3D;
 
 
-    inline Vector2D normalize(Vector2D vector);
-    inline Vector3D normalize(Vector3D vector);
+    inline Vector2D normalize(Vector2D v);
+    inline Vector3D normalize(Vector3D v);
 
-    inline float dot(Vector2D vec1, Vector2D vec2);
-    inline float dot(Vector3D vec1, Vector3D vec2);
+    inline float dot(Vector2D v1, Vector2D v2);
+    inline float dot(Vector3D v1, Vector3D v2);
 
-    inline Vector3D cross(Vector3D vec1, Vector3D vec2);
+    inline Vector3D cross(Vector3D v1, Vector3D v2);
 
+    // Operators for getting the vector from p1 (rhs) to p2 (lhs)
     template <typename T1, typename T2>
     inline Vector2D operator-(const Point2D<T1>& lhs, const Point2D<T2>& rhs);
     template <typename T1, typename T2>
     inline Vector3D operator-(const Point3D<T1>& lhs, const Point3D<T2>& rhs);
+
+    // Operators for getting the point a vector is pointing to from another point
     template <typename T>
     inline Point2D<float> operator+(const Point2D<T>& lhs, const Vector2D& rhs);
     template <typename T>
@@ -34,11 +35,7 @@ namespace Pine
     template <typename T>
     inline Point3D<float> operator+(const Vector3D& lhs, const Point3D<T>& rhs);
 
-
-
     // vvv Vector2D vvv
-
-
 
     struct Vector2D
     {
@@ -59,9 +56,9 @@ namespace Pine
 
         friend inline Vector2D operator+(const Vector2D& lhs, const Vector2D& rhs);
         friend inline Vector2D operator-(const Vector2D& lhs, const Vector2D& rhs);
-        friend inline Vector2D operator*(const Vector2D& vector, float scalar);
-        friend inline Vector2D operator*(float scalar, const Vector2D& vector);
-        friend inline Vector2D operator/(const Vector2D& vector, float scalar);
+        friend inline Vector2D operator*(const Vector2D& v, float scalar);
+        friend inline Vector2D operator*(float scalar, const Vector2D& v);
+        friend inline Vector2D operator/(const Vector2D& v, float scalar);
 
         inline float length() const;
     };
@@ -75,7 +72,7 @@ namespace Pine
     inline bool Vector2D::operator!=(const Vector2D& other) const {
         return !operator==(other);
     }
-    
+
 
 
     inline Vector2D& Vector2D::operator+=(const Vector2D& rhs)
@@ -122,20 +119,20 @@ namespace Pine
         return result;
     }
 
-    inline Vector2D operator*(const Vector2D& vector, float scalar)
+    inline Vector2D operator*(const Vector2D& v, float scalar)
     {
-        Vector2D result = vector;
+        Vector2D result = v;
         result *= scalar;
         return result;
     }
 
-    inline Vector2D operator*(float scalar, const Vector2D& vector) {
-        return operator*(vector, scalar);
+    inline Vector2D operator*(float scalar, const Vector2D& v) {
+        return v * scalar;
     }
 
-    inline Vector2D operator/(const Vector2D& vector, float scalar)
+    inline Vector2D operator/(const Vector2D& v, float scalar)
     {
-        Vector2D result = vector;
+        Vector2D result = v;
         result /= scalar;
         return result;
     }
@@ -146,11 +143,7 @@ namespace Pine
         return std::sqrt((x * x) + (y * y));
     }
 
-
-
     // vvv Vector3D vvv // ^^^ Vector2D ^^^
-
-
 
     struct Vector3D
     {
@@ -172,9 +165,9 @@ namespace Pine
 
         friend inline Vector3D operator+(const Vector3D& lhs, const Vector3D& rhs);
         friend inline Vector3D operator-(const Vector3D& lhs, const Vector3D& rhs);
-        friend inline Vector3D operator*(const Vector3D& vector, float scalar);
-        friend inline Vector3D operator*(float scalar, const Vector3D& vector);
-        friend inline Vector3D operator/(const Vector3D& vector, float scalar);
+        friend inline Vector3D operator*(const Vector3D& v, float scalar);
+        friend inline Vector3D operator*(float scalar, const Vector3D& v);
+        friend inline Vector3D operator/(const Vector3D& v, float scalar);
 
         inline float length() const;
     };
@@ -239,20 +232,20 @@ namespace Pine
         return result;
     }
 
-    inline Vector3D operator*(const Vector3D& vector, float scalar)
+    inline Vector3D operator*(const Vector3D& v, float scalar)
     {
-        Vector3D result = vector;
+        Vector3D result = v;
         result *= scalar;
         return result;
     }
 
-    inline Vector3D operator*(float scalar, const Vector3D& vector) {
-        return operator*(vector, scalar);
+    inline Vector3D operator*(float scalar, const Vector3D& v) {
+        return v * scalar;
     }
 
-    inline Vector3D operator/(const Vector3D& vector, float scalar)
+    inline Vector3D operator/(const Vector3D& v, float scalar)
     {
-        Vector3D result = vector;
+        Vector3D result = v;
         result /= scalar;
         return result;
     }
@@ -263,40 +256,34 @@ namespace Pine
         return std::sqrt((x * x) + (y * y) + (z * z));
     }
 
-
-
     // vvv Free Functions vvv // ^^^ Vector3D ^^^
 
-
-
-    inline Vector2D normalize(Vector2D vector) {
-        return vector / vector.length();
+    inline Vector2D normalize(Vector2D v) {
+        return v / v.length();
     }
 
-    inline Vector3D normalize(Vector3D vector) {
-        return vector / vector.length();
+    inline Vector3D normalize(Vector3D v) {
+        return v / v.length();
     }
 
 
 
-    inline float dot(Vector2D vec1, Vector2D vec2) {
-        return (vec1.x * vec2.x) + (vec1.y * vec2.y);
+    inline float dot(Vector2D v1, Vector2D v2) {
+        return (v1.x * v2.x) + (v1.y * v2.y);
     }
-    
-    inline float dot(Vector3D vec1, Vector3D vec2) {
-        return (vec1.x * vec2.x) + (vec1.y * vec2.y) + (vec1.z + vec2.z);
+
+    inline float dot(Vector3D v1, Vector3D v2) {
+        return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z);
     }
-    
 
 
-    inline Vector3D cross(Vector3D vec1, Vector3D vec2)
+
+    inline Vector3D cross(Vector3D v1, Vector3D v2)
     {
         Vector3D result;
-
-        result.x = (vec1.y * vec2.z) - (vec1.z * vec2.y);
-        result.y = (vec1.z * vec2.x) - (vec1.x * vec2.z);
-        result.z = (vec1.x * vec2.y) - (vec1.y * vec2.x);
-        
+        result.x = (v1.y * v2.z) - (v1.z * v2.y);
+        result.y = (v1.z * v2.x) - (v1.x * v2.z);
+        result.z = (v1.x * v2.y) - (v1.y * v2.x);
         return result;
     }
 
@@ -306,10 +293,8 @@ namespace Pine
     inline Vector2D operator-(const Point2D<T1>& lhs, const Point2D<T2>& rhs)
     {
         Vector2D result;
-
         result.x = lhs.x - rhs.x;
         result.y = lhs.y - rhs.y;
-
         return result;
     }
 
@@ -317,39 +302,35 @@ namespace Pine
     inline Vector3D operator-(const Point3D<T1>& lhs, const Point3D<T2>& rhs)
     {
         Vector3D result;
-
         result.x = lhs.x - rhs.x;
         result.y = lhs.y - rhs.y;
         result.z = lhs.z - rhs.z;
-
         return result;
     }
-    
+
+
+
     template <typename T>
     inline Point2D<float> operator+(const Point2D<T>& lhs, const Vector2D& rhs)
     {
         Point2D<float> result;
-
         result.x = lhs.x + rhs.x;
         result.y = lhs.y + rhs.y;
-
         return result;
     }
-    
+
     template <typename T>
     inline Point2D<float> operator+(const Vector2D& lhs, const Point2D<T>& rhs) {
         return rhs + lhs;
     }
-    
+
     template <typename T>
     inline Point3D<float> operator+(const Point3D<T>& lhs, const Vector3D& rhs)
     {
         Point3D<float> result;
-
         result.x = lhs.x + rhs.x;
         result.y = lhs.y + rhs.y;
         result.z = lhs.z + rhs.z;
-
         return result;
     }
 
@@ -357,10 +338,6 @@ namespace Pine
     inline Point3D<float> operator+(const Vector3D& lhs, const Point3D<T>& rhs) {
         return rhs + lhs;
     }
-
-
-
-    // ^^^ Free Functions ^^^
 }
 
 #endif // PINE_MATH_VECTOR_H
