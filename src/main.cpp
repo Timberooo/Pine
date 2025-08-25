@@ -1,4 +1,5 @@
 #include "io/terminal.h"
+#include "math.h"
 
 #include <string>
 
@@ -7,34 +8,16 @@
 int main()
 {
     Pine::Terminal::setBufferSize(1024);
+    
+    Pine::Point2D<int> p1(3, 2);
+    Pine::Point2D<int> p2(1, 5);
 
-    std::string test = Pine::Terminal::readLine();
-    Pine::Terminal::writeLine(test);
+    Pine::Vector2D v = p2 - p1;
 
+    Pine::Terminal::writeLine("distance: " + std::to_string(Pine::distance(p1, p2)));
+    Pine::Terminal::writeLine("v length: " + std::to_string(v.length()));
 
-
-    // Pine::Terminal::setBufferSize(1024);
-    // Pine::Terminal::writeLine("test");
-
-    // for (std::size_t i = 0; i < 990000; i++)
-    // {
-    //     Pine::Terminal::setBackgroundColor((i % 256));
-    //     Pine::Terminal::write(' ');
-    //     Pine::Terminal::flush();
-    // }
-
-    // Pine::Terminal::resetBackgroundColor();
-
-    // std::string test = Pine::Terminal::readLine();
-    // Pine::Terminal::writeLine(test);
-    // Pine::Terminal::write(Pine::Terminal::readLine());
-
-
-
-    // while (Pine::Terminal::readChar() != 'q')
-    // {
-    //     Pine::Terminal::writeLine("hewwo");
-    // }
+    Pine::Terminal::flush();
 
     return 0;
 }

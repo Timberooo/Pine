@@ -100,9 +100,7 @@ namespace Pine::Terminal
 
     void moveCursor(MoveCursorDirection direction, int amount);
 
-    void moveCursor(Vector2D<int> amount);
-
-    inline void moveCursor(int xAmount, int yAmount);
+    void moveCursor(int xAmount, int yAmount);
 
     void setCursorPosition(Point2D<int> position);
 
@@ -147,12 +145,6 @@ namespace Pine::Terminal
     inline void setColor(Color24Bit foregroundColor, Color24Bit backgroundColor) {
         setForegroundColor(foregroundColor);
         setBackgroundColor(backgroundColor);
-    }
-
-
-
-    inline void moveCursor(int xAmount, int yAmount) {
-        moveCursor({ xAmount, yAmount });
     }
 
 
