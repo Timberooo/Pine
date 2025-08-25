@@ -1,7 +1,15 @@
 #include "io/terminal.h"
 #include "math.h"
+#include "callback.h"
 
 #include <string>
+
+
+
+int testFunc()
+{
+    return 0;
+}
 
 
 
@@ -16,6 +24,11 @@ int main()
 
     Pine::Terminal::writeLine("distance: " + std::to_string(Pine::distance(p1, p2)));
     Pine::Terminal::writeLine("v length: " + std::to_string(v.length()));
+
+    Pine::Callback<int (*)()> callback = testFunc;
+    Pine::Callback<int (*)()> c = testFunc;
+
+    Pine::Terminal::writeLine(std::to_string(callback.tryCall(p1.x)));
 
     Pine::Terminal::flush();
 
