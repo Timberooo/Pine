@@ -2,6 +2,7 @@
 #define PINE_MATH_H
 
 #include "math/array.h"
+#include "math/matrix.h"
 #include "math/point.h"
 #include "math/size.h"
 #include "math/triangle.h"
