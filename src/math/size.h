@@ -13,8 +13,8 @@ namespace Pine
     template <typename T>
     struct Size2D
     {
-        T width;
-        T height;
+        T width {};
+        T height {};
 
 
         inline Size2D() {}
@@ -46,9 +46,9 @@ namespace Pine
     template <typename T>
     struct Size3D
     {
-        T width;
-        T height;
-        T length;
+        T width {};
+        T height {};
+        T length {};
 
 
         inline Size3D() {}
