@@ -35,6 +35,8 @@ namespace Pine
         constexpr inline bool operator==(const Point2D<T>& other) const;
         constexpr inline bool operator!=(const Point2D<T>& other) const;
 
+        // Using template types so all supported conversions from T to TReturn
+        // can be used instead of only explicitly supported conversions
         template <typename TReturn>
         explicit constexpr inline operator Point2D<TReturn>() const { return Point2D<TReturn>(static_cast<TReturn>(x), static_cast<TReturn>(y)); }
     };
@@ -66,6 +68,11 @@ namespace Pine
 
         constexpr inline bool operator==(const Point3D<T>& other) const;
         constexpr inline bool operator!=(const Point3D<T>& other) const;
+
+        // Using template types so all supported conversions from T to TReturn
+        // can be used instead of only explicitly supported conversions
+        template <typename TReturn>
+        explicit constexpr inline operator Point3D<TReturn>() const { return Point3D<TReturn>(static_cast<TReturn>(x), static_cast<TReturn>(y), static_cast<TReturn>(z)); }
     };
 
 
