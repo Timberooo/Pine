@@ -9,13 +9,16 @@ namespace Pine
 {
     struct Vector2D;
     struct Vector3D;
+    struct Vector4D;
 
 
     inline Vector2D normalize(Vector2D v);
     inline Vector3D normalize(Vector3D v);
+    inline Vector4D normalize(Vector4D v);
 
     inline float dot(Vector2D v1, Vector2D v2);
     inline float dot(Vector3D v1, Vector3D v2);
+    inline float dot(Vector4D v1, Vector4D v2);
 
     inline Vector3D cross(Vector3D v1, Vector3D v2);
 
@@ -256,13 +259,135 @@ namespace Pine
         return std::sqrt((x * x) + (y * y) + (z * z));
     }
 
-    // vvv Free Functions vvv // ^^^ Vector3D ^^^
+    // vvv Vector4D vvv // ^^^ Vector3D ^^^
+
+    struct Vector4D
+    {
+        float x;
+        float y;
+        float z;
+        float w;
+
+
+        inline Vector4D() {}
+        inline Vector4D(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+
+        inline bool operator==(const Vector4D& other) const;
+        inline bool operator!=(const Vector4D& other) const;
+
+        inline Vector4D& operator+=(const Vector4D& rhs);
+        inline Vector4D& operator-=(const Vector4D& rhs);
+        inline Vector4D& operator*=(float scalar);
+        inline Vector4D& operator/=(float scalar);
+
+        friend inline Vector4D operator+(const Vector4D& lhs, const Vector4D& rhs);
+        friend inline Vector4D operator-(const Vector4D& lhs, const Vector4D& rhs);
+        friend inline Vector4D operator*(const Vector4D& v, float scalar);
+        friend inline Vector4D operator*(float scalar, const Vector4D& v);
+        friend inline Vector4D operator/(const Vector4D& v, float scalar);
+
+        inline float length() const;
+    };
+
+
+
+    inline bool Vector4D::operator==(const Vector4D& other) const {
+        return x == other.x && y == other.y && z == other.z && w == other.w;
+    }
+
+    inline bool Vector4D::operator!=(const Vector4D& other) const {
+        return !operator==(other);
+    }
+
+
+
+    inline Vector4D& Vector4D::operator+=(const Vector4D& rhs)
+    {
+        x += rhs.x;
+        y += rhs.y;
+        z += rhs.z;
+        w += rhs.w;
+        return *this;
+    }
+
+    inline Vector4D& Vector4D::operator-=(const Vector4D& rhs)
+    {
+        x -= rhs.x;
+        y -= rhs.y;
+        z -= rhs.z;
+        w -= rhs.w;
+        return *this;
+    }
+
+    inline Vector4D& Vector4D::operator*=(float scalar)
+    {
+        x *= scalar;
+        y *= scalar;
+        z *= scalar;
+        w *= scalar;
+        return *this;
+    }
+
+    inline Vector4D& Vector4D::operator/=(float scalar)
+    {
+        x /= scalar;
+        y /= scalar;
+        z /= scalar;
+        w /= scalar;
+        return *this;
+    }
+
+
+
+    inline Vector4D operator+(const Vector4D& lhs, const Vector4D& rhs)
+    {
+        Vector4D result = lhs;
+        result += rhs;
+        return result;
+    }
+
+    inline Vector4D operator-(const Vector4D& lhs, const Vector4D& rhs)
+    {
+        Vector4D result = lhs;
+        result -= rhs;
+        return result;
+    }
+
+    inline Vector4D operator*(const Vector4D& v, float scalar)
+    {
+        Vector4D result = v;
+        result *= scalar;
+        return result;
+    }
+
+    inline Vector4D operator*(float scalar, const Vector4D& v) {
+        return v * scalar;
+    }
+
+    inline Vector4D operator/(const Vector4D& v, float scalar)
+    {
+        Vector4D result = v;
+        result /= scalar;
+        return result;
+    }
+
+
+
+    inline float Vector4D::length() const {
+        return std::sqrt((x * x) + (y * y) + (z * z) + (w * w));
+    }
+
+    // vvv Free Functions vvv // ^^^ Vector4D ^^^
 
     inline Vector2D normalize(Vector2D v) {
         return v / v.length();
     }
 
     inline Vector3D normalize(Vector3D v) {
+        return v / v.length();
+    }
+
+    inline Vector4D normalize(Vector4D v) {
         return v / v.length();
     }
 
@@ -274,6 +399,10 @@ namespace Pine
 
     inline float dot(Vector3D v1, Vector3D v2) {
         return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z);
+    }
+
+    inline float dot(Vector4D v1, Vector4D v2) {
+        return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z) + (v1.w * v2.w);
     }
 
 
