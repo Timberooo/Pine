@@ -31,8 +31,8 @@ int main()
 
     Pine::Terminal::writeLine(std::to_string(test()));
     
-    Pine::Point2D<float> p1(0, 0);
-    Pine::Point2D<int> p2(1, 1);
+    Pine::Point2D<float> p1;
+    Pine::Point2D<int> p2;
 
     Pine::Terminal::write("Enter p1's x value: ");
     p1.x = std::stoi(Pine::Terminal::readLine());
@@ -44,6 +44,7 @@ int main()
     p2.y = std::stoi(Pine::Terminal::readLine());
 
     Pine::Terminal::writeLine("distance: " + std::to_string(Pine::distance(Pine::Point2D<int>(p1), p2)));
+    Pine::Terminal::writeLine("v length: " + std::to_string((p2 - p1).length()));
 
     Pine::Terminal::flush();
 
