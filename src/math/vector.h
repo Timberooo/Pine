@@ -12,15 +12,15 @@ namespace Pine
     struct Vector4D;
 
 
-    constexpr inline Vector2D normalize(Vector2D v);
-    constexpr inline Vector3D normalize(Vector3D v);
-    constexpr inline Vector4D normalize(Vector4D v);
+    constexpr inline Vector2D normalize(const Vector2D& v);
+    constexpr inline Vector3D normalize(const Vector3D& v);
+    constexpr inline Vector4D normalize(const Vector4D& v);
 
-    constexpr inline float dot(Vector2D v1, Vector2D v2);
-    constexpr inline float dot(Vector3D v1, Vector3D v2);
-    constexpr inline float dot(Vector4D v1, Vector4D v2);
+    constexpr inline float dot(const Vector2D& v1, const Vector2D& v2);
+    constexpr inline float dot(const Vector3D& v1, const Vector3D& v2);
+    constexpr inline float dot(const Vector4D& v1, const Vector4D& v2);
 
-    constexpr inline Vector3D cross(Vector3D v1, Vector3D v2);
+    constexpr inline Vector3D cross(const Vector3D& v1, const Vector3D& v2);
 
     // Operators for getting the vector from p1 (rhs) to p2 (lhs)
     template <typename T1, typename T2>
@@ -379,35 +379,35 @@ namespace Pine
 
     // vvv Free Functions vvv // ^^^ Vector4D ^^^
 
-    constexpr inline Vector2D normalize(Vector2D v) {
+    constexpr inline Vector2D normalize(const Vector2D& v) {
         return v / v.length();
     }
 
-    constexpr inline Vector3D normalize(Vector3D v) {
+    constexpr inline Vector3D normalize(const Vector3D& v) {
         return v / v.length();
     }
 
-    constexpr inline Vector4D normalize(Vector4D v) {
+    constexpr inline Vector4D normalize(const Vector4D& v) {
         return v / v.length();
     }
 
 
 
-    constexpr inline float dot(Vector2D v1, Vector2D v2) {
+    constexpr inline float dot(const Vector2D& v1, const Vector2D& v2) {
         return (v1.x * v2.x) + (v1.y * v2.y);
     }
 
-    constexpr inline float dot(Vector3D v1, Vector3D v2) {
+    constexpr inline float dot(const Vector3D& v1, const Vector3D& v2) {
         return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z);
     }
 
-    constexpr inline float dot(Vector4D v1, Vector4D v2) {
+    constexpr inline float dot(const Vector4D& v1, const Vector4D& v2) {
         return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z) + (v1.w * v2.w);
     }
 
 
 
-    constexpr inline Vector3D cross(Vector3D v1, Vector3D v2)
+    constexpr inline Vector3D cross(const Vector3D& v1, const Vector3D& v2)
     {
         Vector3D result;
         result.x = (v1.y * v2.z) - (v1.z * v2.y);
