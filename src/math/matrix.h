@@ -1,6 +1,6 @@
 #ifndef PINE_MATH_MATRIX_H
 #define PINE_MATH_MATRIX_H
 
-// TODO: Implement matrices.
+#include "matrix/matrix2x2.h"
 
 #endif // PINE_MATH_MATRIX_H

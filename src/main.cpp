@@ -1,8 +1,5 @@
 #include "io/terminal.h"
-// #include "math.h"
-// #include "callback.h"
-
-#include "math/point.h"
+#include "math.h"
 
 #include <string>
 
@@ -28,23 +25,18 @@ constexpr float test()
 int main()
 {
     Pine::Terminal::setBufferSize(1024);
-
-    Pine::Terminal::writeLine(std::to_string(test()));
     
-    Pine::Point2D<float> p1;
-    Pine::Point2D<int> p2;
+    Pine::Matrix2x2 a({2, 3}, {5, 1});
+    Pine::Matrix2x2 b({4, 6}, {8, 7});
+    Pine::Vector2D  v(5, 3);
 
-    Pine::Terminal::write("Enter p1's x value: ");
-    p1.x = std::stoi(Pine::Terminal::readLine());
-    Pine::Terminal::write("Enter p1's y value: ");
-    p1.y = std::stoi(Pine::Terminal::readLine());
-    Pine::Terminal::write("Enter p2's x value: ");
-    p2.x = std::stoi(Pine::Terminal::readLine());
-    Pine::Terminal::write("Enter p2's y value: ");
-    p2.y = std::stoi(Pine::Terminal::readLine());
+    // a = Pine::Matrix2x2::identity();
+    // a = Pine::Matrix2x2::zero();
 
-    Pine::Terminal::writeLine("distance: " + std::to_string(Pine::distance(Pine::Point2D<int>(p1), p2)));
-    Pine::Terminal::writeLine("v length: " + std::to_string((p2 - p1).length()));
+    a *= b;
+
+    Pine::Terminal::writeLine(std::to_string(a.col1.x) + ' ' + std::to_string(a.col2.x));
+    Pine::Terminal::writeLine(std::to_string(a.col1.y) + ' ' + std::to_string(a.col2.y));
 
     Pine::Terminal::flush();
 
