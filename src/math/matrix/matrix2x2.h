@@ -43,7 +43,6 @@ namespace Pine
         constexpr friend inline Matrix2x2 operator*(float s, const Matrix2x2& m); // s * A
         constexpr friend inline Matrix2x2 operator/(const Matrix2x2& m, float s); // A / s
 
-
         constexpr inline Vector2D row1() const;
         constexpr inline Vector2D row2() const;
     };
