@@ -31,6 +31,9 @@ namespace Pine
         float y {};
 
 
+        static constexpr inline Vector2D zero();
+
+
         constexpr inline Vector2D();
         constexpr inline Vector2D(float x, float y);
 
@@ -50,6 +53,12 @@ namespace Pine
 
         constexpr inline float length() const;
     };
+
+
+
+    constexpr inline Vector2D Vector2D::zero() {
+        return Vector2D(0, 0);
+    }
 
 
 

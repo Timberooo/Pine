@@ -25,6 +25,9 @@ namespace Pine
         float w {};
 
 
+        static constexpr inline Vector4D zero();
+
+
         constexpr inline Vector4D();
         constexpr inline Vector4D(float x, float y, float z, float w);
 
@@ -44,6 +47,12 @@ namespace Pine
 
         constexpr inline float length() const;
     };
+
+
+
+    constexpr inline Vector4D Vector4D::zero() {
+        return Vector4D(0, 0, 0, 0);
+    }
 
 
 

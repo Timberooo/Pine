@@ -34,6 +34,9 @@ namespace Pine
         float z {};
 
 
+        static constexpr inline Vector3D zero();
+
+
         constexpr inline Vector3D();
         constexpr inline Vector3D(float x, float y, float z);
 
@@ -53,6 +56,12 @@ namespace Pine
 
         constexpr inline float length() const;
     };
+
+
+
+    constexpr inline Vector3D Vector3D::zero() {
+        return Vector3D(0, 0, 0);
+    }
 
 
 
