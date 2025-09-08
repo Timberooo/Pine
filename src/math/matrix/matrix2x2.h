@@ -3,14 +3,13 @@
 
 #include "../vector/vector2d.h"
 
+#include <assert.h>
+
 namespace Pine
 {
     struct Matrix2x2;
 
 
-    constexpr inline Vector2D& operator*=(Vector2D& v, const Matrix2x2& m); // v *= A
-
-    constexpr inline Vector2D operator*(const Vector2D& v, const Matrix2x2& m); // v * A
     constexpr inline Vector2D operator*(const Matrix2x2& m, const Vector2D& v); // A * v
 
     // vvv Matrix2x2 vvv
@@ -173,26 +172,19 @@ namespace Pine
 
     // vvv Free Functions vvv // ^^^ Matrix2x2 ^^^
 
-    constexpr inline Vector2D& operator*=(Vector2D& v, const Matrix2x2& m)
+    constexpr inline Vector2D operator*(const Matrix2x2& m, const Vector2D& v)
     {
-        // Impelmented in terms of operator* because a
-        // copy is required to perform this operation
-        v = v * m;
-        return v;
-    }
-
-
-
-    constexpr inline Vector2D operator*(const Vector2D& v, const Matrix2x2& m)
-    {
+        // - n of A and m of B must match for multiplication to work.
+        // - m of A and n of B dictate the order of A * B.
+        //    A        B         A * B
+        // mA x nA  mB x nB     mA x nB
+        //   2x2      2x1         2x1
+        // [ a b ] * [ x ] = [ a*x + b*y ]
+        // [ c d ]   [ y ]   [ c*x + d*y ]
         Vector2D result;
         result.x = dot(v, m.row1());
         result.y = dot(v, m.row2());
         return result;
-    }
-
-    constexpr inline Vector2D operator*(const Matrix2x2& m, const Vector2D& v) {
-        return v * m;
     }
 }
 
