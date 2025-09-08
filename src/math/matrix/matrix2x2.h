@@ -54,7 +54,7 @@ namespace Pine
     // [ 1 0 ]
     // [ 0 1 ]
     constexpr inline Matrix2x2 Matrix2x2::identity() {
-        return Matrix2x2({1, 0}, {0, 1});
+        return Matrix2x2({1.0f, 0.0f}, {0.0f, 1.0f});
     }
 
     // [ 0 0 ]
