@@ -27,8 +27,8 @@ namespace Pine
 
     struct Vector2D
     {
-        float x {};
-        float y {};
+        float x = 0.0f;
+        float y = 0.0f;
 
 
         static constexpr inline Vector2D zero();
@@ -57,7 +57,7 @@ namespace Pine
 
 
     constexpr inline Vector2D Vector2D::zero() {
-        return Vector2D(0, 0);
+        return Vector2D();
     }
 
 

@@ -19,10 +19,10 @@ namespace Pine
 
     struct Vector4D
     {
-        float x {};
-        float y {};
-        float z {};
-        float w {};
+        float x = 0.0f;
+        float y = 0.0f;
+        float z = 0.0f;
+        float w = 0.0f;
 
 
         static constexpr inline Vector4D zero();
@@ -51,7 +51,7 @@ namespace Pine
 
 
     constexpr inline Vector4D Vector4D::zero() {
-        return Vector4D(0, 0, 0, 0);
+        return Vector4D();
     }
 
 

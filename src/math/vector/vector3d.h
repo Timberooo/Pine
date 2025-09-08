@@ -29,9 +29,9 @@ namespace Pine
 
     struct Vector3D
     {
-        float x {};
-        float y {};
-        float z {};
+        float x = 0.0f;
+        float y = 0.0f;
+        float z = 0.0f;
 
 
         static constexpr inline Vector3D zero();
@@ -60,7 +60,7 @@ namespace Pine
 
 
     constexpr inline Vector3D Vector3D::zero() {
-        return Vector3D(0, 0, 0);
+        return Vector3D();
     }
 
 
