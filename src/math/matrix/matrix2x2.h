@@ -178,10 +178,8 @@ namespace Pine
         //   2x2      2x1         2x1
         // [ a b ] * [ x ] = [ a*x + b*y ]
         // [ c d ]   [ y ]   [ c*x + d*y ]
-        Vector2D result;
-        result.x = dot(v, m.row1());
-        result.y = dot(v, m.row2());
-        return result;
+        return Vector2D(dot(v, m.row1()),
+                        dot(v, m.row2()));
     }
 }
 
