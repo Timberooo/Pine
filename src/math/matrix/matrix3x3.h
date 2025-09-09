@@ -7,6 +7,9 @@ namespace Pine
 {
     struct Matrix3x3;
 
+    typedef Matrix3x3 Matrix3;
+    typedef Matrix3x3 Mat3;
+
 
     constexpr inline Vector3D operator*(const Matrix3x3& m, const Vector3D& v); // A * v
 

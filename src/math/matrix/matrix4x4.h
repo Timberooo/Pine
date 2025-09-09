@@ -7,6 +7,9 @@ namespace Pine
 {
     struct Matrix4x4;
 
+    typedef Matrix4x4 Matrix4;
+    typedef Matrix4x4 Mat4;
+
 
     constexpr inline Vector4D operator*(const Matrix4x4& m, const Vector4D& v); // A * v
 

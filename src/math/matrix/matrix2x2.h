@@ -7,6 +7,9 @@ namespace Pine
 {
     struct Matrix2x2;
 
+    typedef Matrix2x2 Matrix2;
+    typedef Matrix2x2 Mat2;
+
 
     constexpr inline Vector2D operator*(const Matrix2x2& m, const Vector2D& v); // A * v
 
