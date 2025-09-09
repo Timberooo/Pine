@@ -10,6 +10,9 @@ namespace Pine
 {
     struct Vector4D;
 
+    typedef Vector4D Vector4;
+    typedef Vector4D Vec4;
+
 
     constexpr inline Vector4D normalize(const Vector4D& v);
 
