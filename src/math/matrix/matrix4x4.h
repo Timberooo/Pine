@@ -1,7 +1,7 @@
 #ifndef PINE_MATH_MATRIX_MATRIX4X4_H
 #define PINE_MATH_MATRIX_MATRIX4X4_H
 
-#include "../vector/vector4d.h"
+#include "../vector/vec4.h"
 
 namespace Pine
 {

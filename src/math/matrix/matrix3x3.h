@@ -1,7 +1,7 @@
 #ifndef PINE_MATH_MATRIX_MATRIX3X3_H
 #define PINE_MATH_MATRIX_MATRIX3X3_H
 
-#include "../vector/vector3d.h"
+#include "../vector/vec3.h"
 
 namespace Pine
 {

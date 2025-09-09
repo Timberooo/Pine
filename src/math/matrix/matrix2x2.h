@@ -1,7 +1,7 @@
 #ifndef PINE_MATH_MATRIX_MATRIX2X2_H
 #define PINE_MATH_MATRIX_MATRIX2X2_H
 
-#include "../vector/vector2d.h"
+#include "../vector/vec2.h"
 
 namespace Pine
 {
@@ -37,7 +37,7 @@ namespace Pine
         constexpr inline Matrix2x2& operator*=(float s); // A *= s
         constexpr inline Matrix2x2& operator/=(float s); // A /= s
 
-        constexpr friend inline Matrix2x2 operator+(const Matrix2x2& lhs, const Matrix2x2& rhs); // A + B
+        constexpr friend inline Mat2 operator+(const Mat2& lhs, const Mat2& rhs); // A + B
         constexpr friend inline Matrix2x2 operator-(const Matrix2x2& lhs, const Matrix2x2& rhs); // A - B
         constexpr friend inline Matrix2x2 operator*(const Matrix2x2& lhs, const Matrix2x2& rhs); // A * B
         constexpr friend inline Matrix2x2 operator*(const Matrix2x2& m, float s); // A * s
