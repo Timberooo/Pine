@@ -6,12 +6,12 @@ namespace Pine
     // Clearer intent that using std::pow() or std::exp() and avoids the
     // headaches of the float requirements of those functions
     template <typename T>
-    inline T square(const T& val);
+    constexpr inline T square(const T& val);
 
 
 
     template <typename T>
-    inline T square(const T& val) {
+    constexpr inline T square(const T& val) {
         return val * val;
     }
 }
