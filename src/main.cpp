@@ -25,18 +25,17 @@ constexpr float test()
 int main()
 {
     Pine::Terminal::setBufferSize(1024);
-    
-    Pine::Matrix2x2 a({2, 3}, {5, 1});
-    Pine::Matrix2x2 b({4, 6}, {8, 7});
-    Pine::Vector2D  v(5, 3);
 
-    // a = Pine::Matrix2x2::identity();
-    // a = Pine::Matrix2x2::zero();
+    Pine::Matrix3x3 a({2, 3, 5}, {5, 1, 11}, {5, 15, 0});
+    Pine::Matrix3x3 b({4, 6, -6}, {8, 7, 4}, {0, 2, -1});
 
-    a *= b;
+    Pine::Vector3D v(5, 3, 8);
+    Pine::Vector3D u;
 
-    Pine::Terminal::writeLine(std::to_string(a.col1.x) + ' ' + std::to_string(a.col2.x));
-    Pine::Terminal::writeLine(std::to_string(a.col1.y) + ' ' + std::to_string(a.col2.y));
+    u = a * b * v;
+    Pine::Terminal::writeLine("a * b * v = " + std::to_string(u.x) + ' ' + std::to_string(u.y) + ' ' + std::to_string(u.z));
+    u = b * a * v;
+    Pine::Terminal::writeLine("b * a * v = " + std::to_string(u.x) + ' ' + std::to_string(u.y) + ' ' + std::to_string(u.z));
 
     Pine::Terminal::flush();
 
