@@ -3,8 +3,6 @@
 
 #include "../vector/vector2d.h"
 
-#include <assert.h>
-
 namespace Pine
 {
     struct Matrix2x2;
