@@ -29,7 +29,7 @@ int main()
     Pine::Matrix3x3 a({2, 3, 5}, {5, 1, 11}, {5, 15, 0});
     Pine::Matrix3x3 b({4, 6, -6}, {8, 7, 4}, {0, 2, -1});
 
-    Pine::Vector3D v(5, 3, 8);
+    Pine::Vec3 v(5, 3, 8);
     Pine::Vector3D u;
 
     u = a * b * v;
