@@ -1,6 +1,6 @@
 CC     = g++
 TARGET = pine
-FILES  = src/main.cpp src/io/terminal_linux.cpp
+FILES  = src/main.cpp src/io/terminal_linux.cpp src/color.cpp
 
 STD_VERSION = -std=c++17
 WARNINGS    = -Wall

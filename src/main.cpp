@@ -1,6 +1,8 @@
 #include "io/terminal.h"
 #include "math.h"
 
+#include "color.h"
+
 #include <string>
 
 
@@ -26,16 +28,32 @@ int main()
 {
     Pine::Terminal::setBufferSize(1024);
 
-    Pine::Matrix3x3 a({2, 3, 5}, {5, 1, 11}, {5, 15, 0});
-    Pine::Matrix3x3 b({4, 6, -6}, {8, 7, 4}, {0, 2, -1});
+    Pine::Terminal::setBackgroundColor(Pine::Color4Bit::Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4Bit::Black));
+    Pine::Terminal::setBackgroundColor(Pine::Color4Bit::Bright_Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4Bit::Bright_Black));
+    Pine::Terminal::setBackgroundColor(Pine::Color4Bit::White);
+    Pine::Terminal::setForegroundColor(Pine::Color4Bit::Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4Bit::White));
+    Pine::Terminal::setBackgroundColor(Pine::Color4Bit::Bright_White);
+    Pine::Terminal::writeLine(std::to_string((int)Pine::Color4Bit::Bright_White));
 
-    Pine::Vec3 v(5, 3, 8);
-    Pine::Vector3D u;
+    Pine::Terminal::resetForegroundColor();
 
-    u = a * b * v;
-    Pine::Terminal::writeLine("a * b * v = " + std::to_string(u.x) + ' ' + std::to_string(u.y) + ' ' + std::to_string(u.z));
-    u = b * a * v;
-    Pine::Terminal::writeLine("b * a * v = " + std::to_string(u.x) + ' ' + std::to_string(u.y) + ' ' + std::to_string(u.z));
+    for (std::size_t i = 0; i < 256; i++)
+    {
+        if (i % 32 == 0)
+            Pine::Terminal::write('\n');
+
+        Pine::Color4Bit color = Pine::quantize({(unsigned char)i, (unsigned char)i, (unsigned char)i});
+        // Pine::Terminal::write(std::to_string((int)color));
+        
+        Pine::Terminal::setBackgroundColor(color);
+        Pine::Terminal::write(' ');
+    }
+
+    Pine::Terminal::resetBackgroundColor();
+    Pine::Terminal::write('\n');
 
     Pine::Terminal::flush();
 

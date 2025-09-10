@@ -12,4 +12,9 @@
 #include "color/color8bit.h"
 #include "color/color24bit.h"
 
+namespace Pine
+{
+    Color4Bit quantize(const Color24Bit& color);
+}
+
 #endif // PINE_COLOR_H
