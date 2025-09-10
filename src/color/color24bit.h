@@ -9,9 +9,20 @@ namespace Pine
 
     struct Color24Bit
     {
-        unsigned char red;
-        unsigned char green;
-        unsigned char blue;
+        union {
+            unsigned char r;
+            unsigned char red;
+        };
+
+        union {
+            unsigned char g;
+            unsigned char green;
+        };
+
+        union {
+            unsigned char b;
+            unsigned char blue;
+        };
     };
 }
 
