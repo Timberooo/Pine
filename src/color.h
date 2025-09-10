@@ -1,41 +1,15 @@
+/* * * * * * * * * * * * * * * * * * NOTES * * * * * * * * * * * * * * * * * *\
+ * - The lookup table for 4 bit colors will need to support custom color     *
+ *   palettes since each console has a unique palette. Make sure to add      *
+ *   palette presets for known palettes and an option for a custom palette   *
+ *   for any that're missed/not covered.                                     *
+\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #ifndef PINE_COLOR_H
 #define PINE_COLOR_H
 
-namespace Pine
-{
-    enum class Color4Bit {
-        Black          = 30,
-        Red            = 31,
-        Green          = 32,
-        Yellow         = 33,
-        Blue           = 34,
-        Magenta        = 35,
-        Cyan           = 36,
-        White          = 37,
-        Bright_Black   = 90,
-        Bright_Red     = 91,
-        Bright_Green   = 92,
-        Bright_Yellow  = 93,
-        Bright_Blue    = 94,
-        Bright_Magenta = 95,
-        Bright_Cyan    = 96,
-        Bright_White   = 97
-    };
-
-
-    typedef unsigned char Color8Bit;
-
-
-    struct Color24Bit;
-
-
-
-    struct Color24Bit
-    {
-        unsigned char red;
-        unsigned char green;
-        unsigned char blue;
-    };
-}
+#include "color/color4bit.h"
+#include "color/color8bit.h"
+#include "color/color24bit.h"
 
 #endif // PINE_COLOR_H
