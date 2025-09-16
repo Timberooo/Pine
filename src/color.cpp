@@ -31,7 +31,8 @@ namespace Pine
         unsigned char closestIndex    = 0;
         float         closestDistance = colorDistance(color, palette.at(0));
 
-        for (unsigned char i = 0; i < 16; i++)
+        // Starting at 1 since closestIndex and closestDistance are initialzied to the values at 0
+        for (unsigned char i = 1; i < 16; i++)
         {
             float distance = colorDistance(color, palette.at(i));
 
