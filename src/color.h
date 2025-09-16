@@ -12,9 +12,13 @@
 #include "color/color8bit.h"
 #include "color/color24bit.h"
 
+#include <array>
+
 namespace Pine
 {
-    Color4Bit quantize(const Color24Bit& color);
+    Color4Bit quantizeToColor4Bit(const std::array<Color24Bit, 16>& palette, const Color24Bit& color);
+
+    Color8Bit quantizeToColor8Bit(const Color24Bit& color);
 }
 
 #endif // PINE_COLOR_H

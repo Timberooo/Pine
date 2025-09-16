@@ -1,48 +1,39 @@
 #include "color.h"
 
+#include "color/color4bit.h"
+#include "color/color8bit.h"
+#include "color/color24bit.h"
 #include "math.h"
 
-#include "io/terminal.h"
-
-#include <string>
-
+#include <array>
 #include <cmath>
 #include <cstddef>
 
+namespace
+{
+    float colorDistance(const ::Pine::Color24Bit& color1, const ::Pine::Color24Bit& color2);
+
+
+
+    float colorDistance(const ::Pine::Color24Bit& color1, const ::Pine::Color24Bit& color2)
+    {
+        int rDif = static_cast<int>(color1.r) - static_cast<int>(color2.r);
+        int gDif = static_cast<int>(color1.g) - static_cast<int>(color2.g);
+        int bDif = static_cast<int>(color1.b) - static_cast<int>(color2.b);
+        return std::sqrt(static_cast<float>(::Pine::square(rDif) + ::Pine::square(gDif) + ::Pine::square(bDif)));
+    }
+}
+
 namespace Pine
 {
-    constexpr Color24Bit lookupTable[16] = { Color24Bit{0, 0, 0},      // Black
-                                                Color24Bit{205, 0, 0},    // Red
-                                                Color24Bit{0, 205, 0},    // green
-                                                Color24Bit{205, 205, 0},  // Yellow
-                                                Color24Bit{0, 0, 238},    // Blue
-                                                Color24Bit{205, 0, 205},  // Magenta
-                                                Color24Bit{0, 205, 205},  // Cyan
-                                                Color24Bit{229, 229, 229}, // White
-                                                Color24Bit{127, 127, 127}, // Gray
-                                                Color24Bit{255, 0, 0}, // Bright Red
-                                                Color24Bit{0, 255, 0}, // Bright Green
-                                                Color24Bit{255, 255, 0}, // Bright yellow
-                                                Color24Bit{92, 92, 255}, // bright blue
-                                                Color24Bit{255, 0, 255}, // bright magenta
-                                                Color24Bit{0, 255, 255}, // bright cyan
-                                                Color24Bit{255, 255, 255} // bright white
-                                                };
-
-
-
-    Color4Bit quantize(const Color24Bit& color)
+    Color4Bit quantizeToColor4Bit(const std::array<Color24Bit, 16>& palette, const Color24Bit& color)
     {
-        float closestDistance = -1.0f;
-        std::size_t closestIndex = 0;
+        std::size_t closestIndex    = 0;
+        float       closestDistance = colorDistance(color, palette.at(0));
 
         for (std::size_t i = 0; i < 16; i++)
         {
-            float distance = std::sqrt((float)(square((int)lookupTable[i].r - (int)color.r) + square((int)lookupTable[i].g - (int)color.g) + square((int)lookupTable[i].b - (int)color.b)));
-            // Terminal::writeLine("distance: " + std::to_string(distance));
-
-            if (closestDistance == -1.0f)
-                closestDistance = distance;
+            float distance = colorDistance(color, palette.at(i));
 
             if (distance < closestDistance)
             {
@@ -51,8 +42,17 @@ namespace Pine
             }
         }
 
-        int offset = closestIndex < 8 ? 30 : (90 - 8);
+        // Indecies below 8 need to be offset by 30 and indecies >= 8 need to be
+        // offset by 90 - 8 to match the ANSI escape code values for a 4-bit palette.
+        std::size_t offset = closestIndex < 8 ? 30 : (90 - 8);
+        return static_cast<Color4Bit>(closestIndex + offset);
+    }
 
-        return (Color4Bit)(closestIndex + offset);
+
+
+    Color8Bit quantizeToColor8Bit(const Color24Bit& color)
+    {
+        // TODO: Implement function.
+        return 0;
     }
 }
