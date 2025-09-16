@@ -28,10 +28,10 @@ namespace Pine
 {
     Color4Bit quantizeToColor4Bit(const std::array<Color24Bit, 16>& palette, const Color24Bit& color)
     {
-        std::size_t closestIndex    = 0;
-        float       closestDistance = colorDistance(color, palette.at(0));
+        unsigned char closestIndex    = 0;
+        float         closestDistance = colorDistance(color, palette.at(0));
 
-        for (std::size_t i = 0; i < 16; i++)
+        for (unsigned char i = 0; i < 16; i++)
         {
             float distance = colorDistance(color, palette.at(i));
 
@@ -42,10 +42,7 @@ namespace Pine
             }
         }
 
-        // Indecies below 8 need to be offset by 30 and indecies >= 8 need to be
-        // offset by 90 - 8 to match the ANSI escape code values for a 4-bit palette.
-        std::size_t offset = closestIndex < 8 ? 30 : (90 - 8);
-        return static_cast<Color4Bit>(closestIndex + offset);
+        return static_cast<Color4Bit>(closestIndex);
     }
 
 

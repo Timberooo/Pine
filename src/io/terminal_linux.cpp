@@ -252,7 +252,10 @@ namespace Pine::Terminal
 
     void setForegroundColor(Color4Bit color)
     {
-        write("\033[" + std::to_string((int)color) + 'm');
+        unsigned char ansiColorCode = static_cast<unsigned char>(color);
+        ansiColorCode += static_cast<unsigned char>(color) < 8 ? 30 : (90 - 8);
+
+        write("\033[" + std::to_string(ansiColorCode) + 'm');
     }
 
     void setForegroundColor(Color8Bit color)
@@ -269,7 +272,10 @@ namespace Pine::Terminal
 
     void setBackgroundColor(Color4Bit color)
     {
-        write("\033[" + std::to_string(((int)color) + 10) + 'm');
+        unsigned char ansiColorCode = static_cast<unsigned char>(color) + 10;
+        ansiColorCode += static_cast<unsigned char>(color) < 8 ? 30 : (90 - 8);
+
+        write("\033[" + std::to_string(ansiColorCode) + 'm');
     }
 
     void setBackgroundColor(Color8Bit color)
