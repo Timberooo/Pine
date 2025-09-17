@@ -13,6 +13,9 @@ namespace
 {
     float colorDistance(const ::Pine::Color24Bit& color1, const ::Pine::Color24Bit& color2);
 
+    template <typename T, std::size_t S>
+    T quantize(const std::array<::Pine::Color24Bit, S>& palette, const ::Pine::Color24Bit& color);
+
 
 
     float colorDistance(const ::Pine::Color24Bit& color1, const ::Pine::Color24Bit& color2)
@@ -22,20 +25,21 @@ namespace
         int bDif = static_cast<int>(color1.b) - static_cast<int>(color2.b);
         return std::sqrt(static_cast<float>(::Pine::square(rDif) + ::Pine::square(gDif) + ::Pine::square(bDif)));
     }
-}
 
-namespace Pine
-{
-    Color4Bit quantizeToColor4Bit(const std::array<Color24Bit, 16>& palette, const Color24Bit& color)
+
+
+    template <typename T, std::size_t S>
+    T quantize(const std::array<::Pine::Color24Bit, S>& palette, const ::Pine::Color24Bit& color)
     {
-        unsigned char closestIndex    = 0;
-        float         closestDistance = colorDistance(color, palette.at(0));
+        std::size_t closestIndex    = 0;
+        float       closestDistance = colorDistance(color, palette.at(0));
 
         // Starting at 1 since closestIndex and closestDistance are initialzied to the values at 0
-        for (unsigned char i = 1; i < 16; i++)
+        for (std::size_t i = 1; i < palette.size(); i++)
         {
             float distance = colorDistance(color, palette.at(i));
 
+            // Update closest
             if (distance < closestDistance)
             {
                 closestDistance = distance;
@@ -43,7 +47,15 @@ namespace Pine
             }
         }
 
-        return static_cast<Color4Bit>(closestIndex);
+        return static_cast<T>(closestIndex);
+    }
+}
+
+namespace Pine
+{
+    Color4Bit quantizeToColor4Bit(const std::array<Color24Bit, 16>& palette, const Color24Bit& color)
+    {
+        return quantize<Color4Bit>(palette, color);
     }
 
 
