@@ -8,17 +8,23 @@
 #ifndef PINE_COLOR_H
 #define PINE_COLOR_H
 
-#include "color/color4bit.h"
-#include "color/color8bit.h"
-#include "color/color24bit.h"
+#include "color/color4.h"
+#include "color/color8.h"
+#include "color/colorRGB.h"
+#include "color/colorRGBf.h"
+#include "color/colorRGBA.h"
+#include "color/colorRGBAf.h"
 
 #include <array>
 
 namespace Pine
 {
-    Color4Bit quantizeToColor4Bit(const std::array<Color24Bit, 16>& palette, const Color24Bit& color);
+    typedef std::array<ColorRGB, 16>  Color4Palette;
+    typedef std::array<ColorRGB, 256> Color8Palette;
 
-    Color8Bit quantizeToColor8Bit(const Color24Bit& color);
+
+    Color4 quantizeToColor4(const Color4Palette& palette, const ColorRGB& color);
+    Color8 quantizeToColor8(const Color8Palette& palette, const ColorRGB& color);
 }
 
 #endif // PINE_COLOR_H

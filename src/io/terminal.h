@@ -66,23 +66,23 @@ namespace Pine::Terminal
     inline bool bufferedOutput();
 
 
-    inline void setColor(Color4Bit foregroundColor, Color4Bit backgroundColor);
+    inline void setColor(Color4 foregroundColor, Color4 backgroundColor);
 
-    inline void setColor(Color8Bit foregroundColor, Color8Bit backgroundColor);
+    inline void setColor(Color8 foregroundColor, Color8 backgroundColor);
 
-    inline void setColor(Color24Bit foregroundColor, Color24Bit backgroundColor);
+    inline void setColor(ColorRGB foregroundColor, ColorRGB backgroundColor);
 
-    void setForegroundColor(Color4Bit color);
+    void setForegroundColor(Color4 color);
 
-    void setForegroundColor(Color8Bit color);
+    void setForegroundColor(Color8 color);
 
-    void setForegroundColor(Color24Bit color);
+    void setForegroundColor(ColorRGB color);
 
-    void setBackgroundColor(Color4Bit color);
+    void setBackgroundColor(Color4 color);
 
-    void setBackgroundColor(Color8Bit color);
+    void setBackgroundColor(Color8 color);
 
-    void setBackgroundColor(Color24Bit color);
+    void setBackgroundColor(ColorRGB color);
 
     void resetForegroundColor();
 
@@ -132,17 +132,17 @@ namespace Pine::Terminal
 
 
 
-    inline void setColor(Color4Bit foregroundColor, Color4Bit backgroundColor) {
+    inline void setColor(Color4 foregroundColor, Color4 backgroundColor) {
         setForegroundColor(foregroundColor);
         setBackgroundColor(backgroundColor);
     }
 
-    inline void setColor(Color8Bit foregroundColor, Color8Bit backgroundColor) {
+    inline void setColor(Color8 foregroundColor, Color8 backgroundColor) {
         setForegroundColor(foregroundColor);
         setBackgroundColor(backgroundColor);
     }
 
-    inline void setColor(Color24Bit foregroundColor, Color24Bit backgroundColor) {
+    inline void setColor(ColorRGB foregroundColor, ColorRGB backgroundColor) {
         setForegroundColor(foregroundColor);
         setBackgroundColor(backgroundColor);
     }

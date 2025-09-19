@@ -28,19 +28,19 @@ int main()
 {
     Pine::Terminal::setBufferSize(1024);
 
-    Pine::Terminal::setBackgroundColor(Pine::Color4Bit::Black);
-    Pine::Terminal::write(std::to_string((int)Pine::Color4Bit::Black));
-    Pine::Terminal::setBackgroundColor(Pine::Color4Bit::Bright_Black);
-    Pine::Terminal::write(std::to_string((int)Pine::Color4Bit::Bright_Black));
-    Pine::Terminal::setBackgroundColor(Pine::Color4Bit::White);
-    Pine::Terminal::setForegroundColor(Pine::Color4Bit::Black);
-    Pine::Terminal::write(std::to_string((int)Pine::Color4Bit::White));
-    Pine::Terminal::setBackgroundColor(Pine::Color4Bit::Bright_White);
-    Pine::Terminal::writeLine(std::to_string((int)Pine::Color4Bit::Bright_White));
+    Pine::Terminal::setBackgroundColor(Pine::Color4::Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4::Black));
+    Pine::Terminal::setBackgroundColor(Pine::Color4::Bright_Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4::Bright_Black));
+    Pine::Terminal::setBackgroundColor(Pine::Color4::White);
+    Pine::Terminal::setForegroundColor(Pine::Color4::Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4::White));
+    Pine::Terminal::setBackgroundColor(Pine::Color4::Bright_White);
+    Pine::Terminal::writeLine(std::to_string((int)Pine::Color4::Bright_White));
 
     Pine::Terminal::resetForegroundColor();
 
-    std::array<Pine::Color24Bit, 16> lut;
+    std::array<Pine::ColorRGB, 16> lut;
     lut.at(0) =  {0,   0,   0};
     lut.at(1) =  {205, 0,   0};
     lut.at(2) =  {0,   205, 0};
@@ -63,7 +63,7 @@ int main()
         if (i % 32 == 0)
             Pine::Terminal::write('\n');
 
-        Pine::Color4Bit color = Pine::quantizeToColor4Bit(lut, {(unsigned char)i, (unsigned char)i, (unsigned char)i});
+        Pine::Color4 color = Pine::quantizeToColor4(lut, {(unsigned char)i, (unsigned char)i, (unsigned char)i});
         
         Pine::Terminal::setBackgroundColor(color);
         Pine::Terminal::write(' ');

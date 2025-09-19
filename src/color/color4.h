@@ -1,9 +1,15 @@
-#ifndef PINE_COLOR_COLOR4BIT_H
-#define PINE_COLOR_COLOR4BIT_H
+// 4-bit color format that supports 16 colors. While this format actually uses
+// more than 4 bits its still potentially necessary and useful for terminals
+// that only support 4-bit color modes.
+
+#ifndef PINE_COLOR_COLOR4_H
+#define PINE_COLOR_COLOR4_H
+
+#include "../core.h"
 
 namespace Pine
 {
-    enum class Color4Bit : unsigned char {
+    enum class Color4 : Byte {
         Black          = 0,
         Red            = 1,
         Green          = 2,
@@ -23,4 +29,4 @@ namespace Pine
     };
 }
 
-#endif // PINE_COLOR_COLOR4BIT_H
+#endif // PINE_COLOR_COLOR4_H
