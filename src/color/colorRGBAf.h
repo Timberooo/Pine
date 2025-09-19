@@ -1,13 +1,13 @@
-#ifndef PINE_COLOR_COLORRGBF_H
-#define PINE_COLOR_COLORRGBF_H
+#ifndef PINE_COLOR_COLORRGBAF_H
+#define PINE_COLOR_COLORRGBAF_H
 
 namespace Pine
 {
-    struct ColorRGBf;
+    struct ColorRGBAf;
 
 
 
-    struct ColorRGBf
+    struct ColorRGBAf
     {
         union {
             float r;
@@ -30,15 +30,15 @@ namespace Pine
         };
 
 
-        inline ColorRGBf();
-        inline ColorRGBf(float r, float g, float b, float a);
+        inline ColorRGBAf();
+        inline ColorRGBAf(float r, float g, float b, float a);
     };
 
 
 
-    inline ColorRGBf::ColorRGBf() : ColorRGBf(0.0f, 0.0f, 0.0f, 0.0f) {}
+    inline ColorRGBAf::ColorRGBAf() : ColorRGBAf(0.0f, 0.0f, 0.0f, 0.0f) {}
 
-    inline ColorRGBf::ColorRGBf(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) {}
+    inline ColorRGBAf::ColorRGBAf(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) {}
 }
 
-#endif // PINE_COLOR_COLORRGBF_H
+#endif // PINE_COLOR_COLORRGBAF_H
