@@ -12,23 +12,23 @@ namespace Pine
     struct ColorRGBA
     {
         union {
-            unsigned char r;
-            unsigned char red;
+            Byte r;
+            Byte red;
         };
 
         union {
-            unsigned char g;
-            unsigned char green;
+            Byte g;
+            Byte green;
         };
 
         union {
-            unsigned char b;
-            unsigned char blue;
+            Byte b;
+            Byte blue;
         };
 
         union {
-            unsigned char a;
-            unsigned char alpha;
+            Byte a;
+            Byte alpha;
         };
 
 
