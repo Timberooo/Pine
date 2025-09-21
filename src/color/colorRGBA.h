@@ -1,6 +1,7 @@
 #ifndef PINE_COLOR_COLORRGBA_H
 #define PINE_COLOR_COLORRGBA_H
 
+#include "colorRGB.h"
 #include "../core.h"
 
 namespace Pine
@@ -9,23 +10,8 @@ namespace Pine
 
 
 
-    struct ColorRGBA
+    struct ColorRGBA : public ColorRGB
     {
-        union {
-            Byte r;
-            Byte red;
-        };
-
-        union {
-            Byte g;
-            Byte green;
-        };
-
-        union {
-            Byte b;
-            Byte blue;
-        };
-
         union {
             Byte a;
             Byte alpha;
@@ -40,7 +26,7 @@ namespace Pine
 
     inline ColorRGBA::ColorRGBA() : ColorRGBA(0, 0, 0, 0) {}
 
-    inline ColorRGBA::ColorRGBA(Byte r, Byte g, Byte b, Byte a) : r(r), g(g), b(b), a(a) {}
+    inline ColorRGBA::ColorRGBA(Byte r, Byte g, Byte b, Byte a) : ColorRGB(r, g, b), a(a) {}
 }
 
 #endif // PINE_COLOR_COLORRGBA_H
