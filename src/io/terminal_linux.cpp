@@ -250,34 +250,40 @@ namespace Pine::Terminal
 
 
 
-    void setForegroundColor(Color4Bit color)
+    void setForegroundColor(Color4 color)
     {
-        write("\033[" + std::to_string((int)color) + 'm');
+        unsigned char ansiColorCode = static_cast<unsigned char>(color);
+        ansiColorCode += static_cast<unsigned char>(color) < 8 ? 30 : (90 - 8);
+
+        write("\033[" + std::to_string(ansiColorCode) + 'm');
     }
 
-    void setForegroundColor(Color8Bit color)
+    void setForegroundColor(Color8 color)
     {
         write("\033[38;5;" + std::to_string(color) + 'm');
     }
 
-    void setForegroundColor(Color24Bit color)
+    void setForegroundColor(ColorRGB color)
     {
         write("\033[38;2;" + color.red + ';' + color.green + ';' + color.blue + 'm');
     }
 
 
 
-    void setBackgroundColor(Color4Bit color)
+    void setBackgroundColor(Color4 color)
     {
-        write("\033[" + std::to_string(((int)color) + 10) + 'm');
+        unsigned char ansiColorCode = static_cast<unsigned char>(color) + 10;
+        ansiColorCode += static_cast<unsigned char>(color) < 8 ? 30 : (90 - 8);
+
+        write("\033[" + std::to_string(ansiColorCode) + 'm');
     }
 
-    void setBackgroundColor(Color8Bit color)
+    void setBackgroundColor(Color8 color)
     {
         write("\033[48;5;" + std::to_string(color) + 'm');
     }
 
-    void setBackgroundColor(Color24Bit color)
+    void setBackgroundColor(ColorRGB color)
     {
         write("\033[48;2;" + color.red + ';' + color.green + ';' + color.blue + 'm');
     }

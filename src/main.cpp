@@ -1,6 +1,8 @@
 #include "io/terminal.h"
 #include "math.h"
 
+#include "color.h"
+
 #include <string>
 
 
@@ -26,16 +28,49 @@ int main()
 {
     Pine::Terminal::setBufferSize(1024);
 
-    Pine::Matrix3x3 a({2, 3, 5}, {5, 1, 11}, {5, 15, 0});
-    Pine::Matrix3x3 b({4, 6, -6}, {8, 7, 4}, {0, 2, -1});
+    Pine::Terminal::setBackgroundColor(Pine::Color4::Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4::Black));
+    Pine::Terminal::setBackgroundColor(Pine::Color4::Bright_Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4::Bright_Black));
+    Pine::Terminal::setBackgroundColor(Pine::Color4::White);
+    Pine::Terminal::setForegroundColor(Pine::Color4::Black);
+    Pine::Terminal::write(std::to_string((int)Pine::Color4::White));
+    Pine::Terminal::setBackgroundColor(Pine::Color4::Bright_White);
+    Pine::Terminal::writeLine(std::to_string((int)Pine::Color4::Bright_White));
 
-    Pine::Vec3 v(5, 3, 8);
-    Pine::Vector3D u;
+    Pine::Terminal::resetForegroundColor();
 
-    u = a * b * v;
-    Pine::Terminal::writeLine("a * b * v = " + std::to_string(u.x) + ' ' + std::to_string(u.y) + ' ' + std::to_string(u.z));
-    u = b * a * v;
-    Pine::Terminal::writeLine("b * a * v = " + std::to_string(u.x) + ' ' + std::to_string(u.y) + ' ' + std::to_string(u.z));
+    std::array<Pine::ColorRGB, 16> lut;
+    lut.at(0) =  {0,   0,   0};
+    lut.at(1) =  {205, 0,   0};
+    lut.at(2) =  {0,   205, 0};
+    lut.at(3) =  {205, 205, 0};
+    lut.at(4) =  {0,   0,   238};
+    lut.at(5) =  {205, 0,   205};
+    lut.at(6) =  {0,   205, 205};
+    lut.at(7) =  {229, 229, 229};
+    lut.at(8) =  {127, 127, 127};
+    lut.at(9) =  {255, 0,   0};
+    lut.at(10) = {0,   255, 0};
+    lut.at(11) = {255, 255, 0};
+    lut.at(12) = {92,  92,  255};
+    lut.at(13) = {255, 0,   255};
+    lut.at(14) = {0,   255, 255};
+    lut.at(15) = {255, 255, 255};
+
+    for (std::size_t i = 0; i < 256; i++)
+    {
+        if (i % 32 == 0)
+            Pine::Terminal::write('\n');
+
+        Pine::Color4 color = Pine::quantizeToColor4(lut, {(unsigned char)i, (unsigned char)i, (unsigned char)i});
+        
+        Pine::Terminal::setBackgroundColor(color);
+        Pine::Terminal::write(' ');
+    }
+
+    Pine::Terminal::resetBackgroundColor();
+    Pine::Terminal::write('\n');
 
     Pine::Terminal::flush();
 

@@ -36,4 +36,9 @@
     #define PINE_FORCE_INLINE_SUPPORTED PINE_FALSE
 #endif
 
+namespace Pine
+{
+    typedef unsigned char Byte;
+}
+
 #endif // PINE_CORE_H
